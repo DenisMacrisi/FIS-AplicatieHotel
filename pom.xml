@@ -1,3 +1,32 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@DenisMacrisi 
+DenisMacrisi
+/
+AplicatieHotel
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+AplicatieHotel/pom.xml
+@MarioRivis
+MarioRivis changed artifact id to simple-registration-example
+Latest commit da73cfd on 31 Mar 2021
+ History
+ 1 contributor
+65 lines (58 sloc)  2.17 KB
+   
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -63,3 +92,16 @@
     </build>
 
 </project>
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete
