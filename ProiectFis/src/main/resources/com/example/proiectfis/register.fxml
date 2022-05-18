@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="554.0" prefWidth="480.0" style="-fx-background-color: #F5F5DC;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiectfis.RegisterController">
+<AnchorPane prefHeight="554.0" prefWidth="520.0" style="-fx-background-color: #F5F5DC;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiectfis.RegisterController">
     <children>
         <AnchorPane prefHeight="90.0" prefWidth="520.0" style="-fx-background-color: #DEB887;">
             <children>
@@ -79,5 +80,6 @@
       <Label fx:id="lastNameLabel" alignment="CENTER" layoutX="82.0" layoutY="175.0" prefHeight="19.0" prefWidth="336.0" textFill="#e82614" />
       <Label fx:id="userNameLabel" alignment="CENTER" layoutX="82.0" layoutY="240.0" prefHeight="19.0" prefWidth="336.0" textFill="#e82614" />
       <Label fx:id="passwordLabel" alignment="CENTER" layoutX="82.0" layoutY="305.0" prefHeight="19.0" prefWidth="336.0" textFill="#e82614" />
+      <Accordion />
     </children>
 </AnchorPane>
