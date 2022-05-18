@@ -2,7 +2,10 @@ package com.example.proiectfis;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -10,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.net.URL;
@@ -55,6 +59,7 @@ public class RegisterController implements Initializable {
         if(setPasswordField.getText().equals(confirmPasswordField.getText())){
             confirmPasswordLabel.setText("");
 
+
         }else{
             confirmPasswordLabel.setText("Passwords do not match");
         }
@@ -63,8 +68,20 @@ public class RegisterController implements Initializable {
     public void closeButtonOnAction(ActionEvent event){
         Stage stage=(Stage) closeButton.getScene().getWindow();
         stage.close();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 546, 407));
+            registerStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
 
     }
+    @FXML
+    private Button registerButton;
     public void registerUser() {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
@@ -72,8 +89,9 @@ public class RegisterController implements Initializable {
         String lastname = lastnameTextField.getText();
         String username = usernameTextField.getText();
         String password = setPasswordField.getText();
-        String insertFields = "INSERT INTO user_account(lastName, firstName, userName, password) VALUES('";
-        String insertValues = firstname + "','" + lastname + "','" + username + "','" + password + "')";
+        String type="user";
+        String insertFields = "INSERT INTO user_account(firstName, lastName, userName, password,account_type) VALUES('";
+        String insertValues = firstname + "','" + lastname + "','" + username + "','" + password + "','" + type + "')";
         String insertToRegister = insertFields + insertValues;
         if(firstnameTextField.getText().isBlank()==true){
             firsttNameLabel.setText("Please enter your first name.");
@@ -90,15 +108,27 @@ public class RegisterController implements Initializable {
         if(confirmPasswordField.getText().isBlank()==true){
             confirmPasswordLabel.setText("Please confirm your password.");
         }
+
         if (setPasswordField.getText().equals(confirmPasswordField.getText()) && firstnameTextField.getText().isBlank()==false && lastnameTextField.getText().isBlank()==false && usernameTextField.getText().isBlank()==false
         && setPasswordField.getText().isBlank()==false && confirmPasswordField.getText().isBlank()==false) {
             try {
                 Statement statement = connectDB.createStatement();
                 statement.executeUpdate(insertToRegister);
-                if (setPasswordField.getText().equals(confirmPasswordField.getText()))
+                if (setPasswordField.getText().equals(confirmPasswordField.getText())) {
                     registrationMessageLabel1.setText("User registered successfully");
-
-
+                    Stage stage=(Stage) registerButton.getScene().getWindow();
+                    stage.close();
+                    try {
+                        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                        Stage registerStage = new Stage();
+                        registerStage.initStyle(StageStyle.UNDECORATED);
+                        registerStage.setScene(new Scene(root, 546, 407));
+                        registerStage.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        e.getCause();
+                    }
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 e.getCause();
@@ -108,3 +138,4 @@ public class RegisterController implements Initializable {
 
     }
 }
+
