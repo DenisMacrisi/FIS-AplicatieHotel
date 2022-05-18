@@ -98,7 +98,6 @@ public class HomepageAdminController implements Initializable {
 
     @FXML
     private Button checkoutButton;
-
     @FXML
     private AnchorPane Pane;
     @FXML
