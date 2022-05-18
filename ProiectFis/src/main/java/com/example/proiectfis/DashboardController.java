@@ -79,7 +79,6 @@ public class DashboardController implements Initializable {
         Image pendingImage = new Image(registerFile4.toURI().toString());
         pendingImageView.setImage(pendingImage);
 
-
         dbConnection = new DatabaseConnection();
         connection = dbConnection.getConnection();
         String query = "SELECT COUNT(roomNumber) AS totalRooms, a.totalNotBooked, booked.totalBooked FROM rooms, " +
