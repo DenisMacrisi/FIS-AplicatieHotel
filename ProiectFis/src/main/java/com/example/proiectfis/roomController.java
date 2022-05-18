@@ -49,6 +49,10 @@ public class roomController implements Initializable {
 
     @FXML
     private Button backButton;
+    @FXML
+    private Button add;
+    @FXML
+    private Button remove;
 
     private Connection connection;
 
@@ -101,6 +105,7 @@ public class roomController implements Initializable {
         }
     }
 
+
     private void Search(ObservableList<room> rooms, String s) {
         rooms.clear();
         for (int i = 0; i < roomList.size(); i++) {
@@ -150,5 +155,23 @@ public class roomController implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+    }
+    public void handleAddAction(javafx.event.ActionEvent actionEvent) throws IOException {
+        Stage stage=(Stage) remove.getScene().getWindow();
+        stage.close();
+        Stage add = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("addroom.fxml"));
+        Scene scene = new Scene(root);
+        add.setScene(scene);
+        add.show();
+    }
+    public void handleRemoveAction(javafx.event.ActionEvent actionEvent) throws IOException{
+        Stage stage=(Stage) remove.getScene().getWindow();
+        stage.close();
+        Stage remove=new Stage();
+        Parent root= FXMLLoader.load(getClass().getResource("removeRoom.fxml"));
+        Scene scene=new Scene(root);
+        remove.setScene(scene);
+        remove.show();
     }
 }
