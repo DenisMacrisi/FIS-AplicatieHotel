@@ -49,15 +49,20 @@ public class LoginController implements Initializable {
         lockImageView.setImage(lockImage);
     }
 
+    public static String a;
     public void loginButtonOnAction(ActionEvent event) {
 
         loginMessageLabel.setText("You tried to login");
         if (usernameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false) {
+            a = usernameTextField.getText();
             validateLogin();
 
         } else {
             loginMessageLabel.setText("Please enter your surname and password");
         }
+    }
+    public static String getUsername(){
+        return a;
     }
 
     public void cancelButtonOnAction(ActionEvent event) {
