@@ -98,10 +98,13 @@ public class HomepageAdminController implements Initializable {
 
     @FXML
     private Button checkoutButton;
+
     @FXML
     private AnchorPane Pane;
     @FXML
     private BorderPane borderpane;
+    @FXML
+    private Button reservationButton;
 
     public void createDashboard(javafx.event.ActionEvent actionEvent){
         goToDashboard();
@@ -112,6 +115,24 @@ public class HomepageAdminController implements Initializable {
         goToRoomManagement();
         Stage stage=(Stage) roomButton.getScene().getWindow();
         stage.close();
+    }
+    public void createReservationManagement(javafx.event.ActionEvent actionEvent){
+        goToReservationManagement();
+        Stage stage=(Stage) reservationButton.getScene().getWindow();
+        stage.close();
+
+    }
+    public void goToReservationManagement(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("seeReservation.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 720, 731));
+            registerStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
     public void goToDashboard(){
         try {
