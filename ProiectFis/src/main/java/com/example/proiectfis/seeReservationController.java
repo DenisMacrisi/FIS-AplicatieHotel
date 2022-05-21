@@ -160,6 +160,15 @@ public class seeReservationController implements Initializable {
             e.getCause();
         }
     }
+    public void handleCancelAction(javafx.event.ActionEvent actionEvent) throws IOException{
+        Stage stage=(Stage) cancel.getScene().getWindow();
+        stage.close();
+        Stage remove=new Stage();
+        Parent root= FXMLLoader.load(getClass().getResource("cancelReservation.fxml"));
+        Scene scene=new Scene(root);
+        remove.setScene(scene);
+        remove.show();
+    }
 
 
 }
