@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -63,6 +64,8 @@ public class HomepageUserController implements Initializable {
 
     @FXML
     private Button availableButton;
+    @FXML
+    private Button bookRoomButton;
 
     public void createAvailableRooms(javafx.event.ActionEvent actionEvent){
         goToAvailableRooms();
@@ -82,5 +85,23 @@ public class HomepageUserController implements Initializable {
         }
 
 
+    }
+
+    public void createBookRoom(javafx.event.ActionEvent actionEvent){
+        goToBookRoom();
+        Stage stage=(Stage) bookRoomButton.getScene().getWindow();
+        stage.close();
+    }
+    public void goToBookRoom(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("bookRoom.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 720, 675));
+            registerStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 }
