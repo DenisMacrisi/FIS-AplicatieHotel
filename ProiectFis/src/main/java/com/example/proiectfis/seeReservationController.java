@@ -51,7 +51,9 @@ public class seeReservationController implements Initializable {
 
     @FXML
     private Button backButton;
-
+    
+     @FXML
+    private Button cancel;
 
     private Connection connection;
 
