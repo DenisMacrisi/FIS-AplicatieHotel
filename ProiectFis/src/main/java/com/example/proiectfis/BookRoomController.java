@@ -125,14 +125,7 @@ public class BookRoomController implements Initializable {
     public void handleCheckInPick(javafx.event.ActionEvent actionEvent) {
 
     }
-/*
-    public void handleCheckOutPick(javafx.event.ActionEvent actionEvent) {
-        int x = outDate.getValue().compareTo(inDate.getValue());
-        days.setText("Total days: " + x);
-        int p = Integer.parseInt(price.getText().replace("Price: ", ""));
-        amount.setText("Total Amount: " + (p * x));
-    }
-*/
+
     public void handleSubmitAction(javafx.event.ActionEvent actionEvent) {
         String reservationDate = cReservationDate.getText();
         String name = cName.getText();
@@ -142,17 +135,12 @@ public class BookRoomController implements Initializable {
         if (name.equals("") || email.equals("") || phone.equals("") || roomNo.equals("") || reservationDate.equals("") ) {
             OptionPane("Every Field is required", "Error Message");
         } else {
-            /*String insertCustomer = "INSERT INTO customers(customerIDNumber, customerName, customerNationality, customerGender, customerPhoneNo, customerEmail)"
-                    + "VALUES (?, ?, ?, ?, ?, ?)";
 
-             */
 
             insertCustomerFields = "INSERT INTO customers(username, roomNumber, name, email, phone, reservation_date) VALUES('";
             insertCustomerValues = LoginController.getUsername() + "','" + roomNo + "','" + name + "','" + email + "','" + phone + "','" + reservationDate + "')";
 
             String insertCustomer = insertCustomerFields + insertCustomerValues;
-
-            //String insertReservation = "INSERT INTO reservations(customerIDNumber, roomNumber, checkInDate, checkOutDate) VALUES (?, ?, ?, ?)";
 
 
             insertReservationFields = "INSERT INTO reservations(username, roomNumber, status,reservation_date) VALUES('";
