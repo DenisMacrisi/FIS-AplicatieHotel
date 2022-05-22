@@ -18,6 +18,7 @@
                         <Font name="Times New Roman Bold" size="36.0" />
                     </font>
                 </Label>
+            <Button fx:id="cancel" layoutX="505.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleCancelAction" prefHeight="40.0" prefWidth="147.0" style="-fx-background-color: #F5F5DC;" text="Cancel Reservation" textFill="#d71b1b" />
             </children>
         </AnchorPane>
         <AnchorPane layoutX="15.0" layoutY="95.0" prefHeight="570.0" prefWidth="690.0" style="-fx-background-color: #F5F5DC;">
