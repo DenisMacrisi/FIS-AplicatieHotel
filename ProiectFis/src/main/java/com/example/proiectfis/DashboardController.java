@@ -84,10 +84,7 @@ public class DashboardController implements Initializable {
         String query = "SELECT COUNT(roomNumber) AS totalRooms, a.totalNotBooked, booked.totalBooked FROM rooms, " +
                 "(SELECT COUNT(roomNumber) AS totalBooked FROM rooms WHERE status = 'Booked') AS booked, " +
                 "(SELECT COUNT(roomNumber) AS totalNotBooked FROM rooms WHERE status = 'Not Booked') AS a";
-        String query2 = "SELECT SUM(b.billAmount) AS totalEarnings, (SELECT SUM((r.price * DATEDIFF(res.checkOutDate, res.checkInDate))) AS Pending FROM reservations res \n" +
-                "INNER JOIN rooms r ON r.roomNumber = res.roomNumber \n" +
-                "WHERE res.status = 'Checked In') AS totalPendings FROM bills b \n" +
-                "INNER JOIN reservations res ON res.reservationID = b.reservationID;";
+        
         try {
             pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
@@ -99,16 +96,7 @@ public class DashboardController implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        try {
-            pst = connection.prepareStatement(query2);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                earning.setText(rs.getString("totalEarnings"));
-                pending.setText(rs.getString("totalPendings"));
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        
     }
 
     Stage stage;
