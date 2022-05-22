@@ -90,7 +90,7 @@ public class RegisterController implements Initializable {
         String username = usernameTextField.getText();
         String password = setPasswordField.getText();
         String type="user";
-        String insertFields = "INSERT INTO user_account(firstName, lastName, userName, password,account_type) VALUES('";
+        String insertFields = "INSERT INTO user_account(firstname, lastname, username, password,account_type) VALUES('";
         String insertValues = firstname + "','" + lastname + "','" + username + "','" + password + "','" + type + "')";
         String insertToRegister = insertFields + insertValues;
         if(firstnameTextField.getText().isBlank()==true){
@@ -110,7 +110,7 @@ public class RegisterController implements Initializable {
         }
 
         if (setPasswordField.getText().equals(confirmPasswordField.getText()) && firstnameTextField.getText().isBlank()==false && lastnameTextField.getText().isBlank()==false && usernameTextField.getText().isBlank()==false
-        && setPasswordField.getText().isBlank()==false && confirmPasswordField.getText().isBlank()==false) {
+                && setPasswordField.getText().isBlank()==false && confirmPasswordField.getText().isBlank()==false) {
             try {
                 Statement statement = connectDB.createStatement();
                 statement.executeUpdate(insertToRegister);
