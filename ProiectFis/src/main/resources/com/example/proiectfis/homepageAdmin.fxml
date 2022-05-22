@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="Anchorpane" maxHeight="1.7976931348623157E308" prefHeight="692.0" prefWidth="1000.0" style="-fx-background-color: #ffffff; -fx-background-color: ;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiectfis.HomepageAdminController">
+<AnchorPane fx:id="Anchorpane" maxHeight="1.7976931348623157E308" prefHeight="692.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proiectfis.HomepageAdminController">
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: #DEB887;">
          <children>
