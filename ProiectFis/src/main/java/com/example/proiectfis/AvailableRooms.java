@@ -69,7 +69,7 @@ public class AvailableRooms implements Initializable {
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         status.setCellValueFactory(new PropertyValueFactory<room, String>("status"));
         try {
-            initRoomList();
+            initRoomListAvailable();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,10 +80,10 @@ public class AvailableRooms implements Initializable {
 
     }
 
-    public void initRoomList() throws IOException {
+    public void initRoomListAvailable() throws IOException {
         roomList.clear();
         rooms.clear();
-        String query = "SELECT * FROM rooms";
+        String query = "SELECT * FROM rooms WHERE status = 'Not Booked'";
         try {
             pst = connection.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
