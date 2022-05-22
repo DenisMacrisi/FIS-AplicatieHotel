@@ -47,12 +47,12 @@
                         <Font size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="dashButton1" layoutX="-6.0" layoutY="250.0" mnemonicParsing="false" prefHeight="93.0" prefWidth="270.0" style="-fx-background-color: #F5F5DC;" text="Book a room">
+                <Button fx:id="bookRoomButton" layoutX="-6.0" layoutY="250.0" mnemonicParsing="false" onAction="#createBookRoom" prefHeight="93.0" prefWidth="270.0" style="-fx-background-color: #F5F5DC;" text="Book a Room">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="dashButton11" layoutY="350.0" mnemonicParsing="false" prefHeight="93.0" prefWidth="261.0" style="-fx-background-color: #F5F5DC;" text="See reservation history">
+                <Button fx:id="userHistoryButton" layoutY="350.0" mnemonicParsing="false" prefHeight="93.0" onAction="#createUserHistory" prefWidth="261.0" style="-fx-background-color: #F5F5DC;" text="See reservation history">
                     <font>
                         <Font size="18.0" />
                     </font>
