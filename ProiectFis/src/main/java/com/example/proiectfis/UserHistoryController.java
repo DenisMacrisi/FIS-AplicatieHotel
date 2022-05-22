@@ -1,158 +1,141 @@
 package com.example.proiectfis;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
+import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Statement;
 import java.util.ResourceBundle;
-
-public class UserHistoryController implements Initializable {
-
-
+public class RegisterController implements Initializable {
     @FXML
-    private TableColumn<reservation, String> reservationID;
-
+    private ImageView registerImageView;
     @FXML
-    private TableView<reservation> reservationTable;
-
+    private Button closeButton;
     @FXML
-    private TableColumn<reservation, String> reservation_date;
-
+    private Label registrationMessageLabel1;
     @FXML
-    private TextField search;
-
+    private PasswordField setPasswordField;
     @FXML
-    private TableColumn<reservation, String> roomNumber;
-
+    private PasswordField confirmPasswordField;
     @FXML
-    private Button logoutButton;
-
+    private Label confirmPasswordLabel;
     @FXML
-    private Button backButton;
+    private TextField firstnameTextField;
+    @FXML
+    private TextField lastnameTextField;
+    @FXML
+    private TextField usernameTextField;
+    @FXML
+    private Label firsttNameLabel;
+    @FXML
+    private Label lastNameLabel;
+    @FXML
+    private Label passwordLabel;
+    @FXML
+    private Label userNameLabel;
+
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        File registerFile =new File("images/reg2.png");
+        Image registerImage= new Image(registerFile.toURI().toString());
+        registerImageView.setImage(registerImage);
+
+    }
+    public void registerButtonOnAction(ActionEvent event){
+        registerUser();
+        if(setPasswordField.getText().equals(confirmPasswordField.getText())){
+            confirmPasswordLabel.setText("");
 
 
-    private Connection connection;
-
-    private DatabaseConnection dbConnection;
-
-    private PreparedStatement pst;
-
-    public static final ObservableList<reservation> reservations = FXCollections.observableArrayList();
-
-    public static final List<reservation> reservationList = new ArrayList<>();
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        dbConnection = new DatabaseConnection();
-        connection = dbConnection.getConnection();
-        reservationID.setCellValueFactory(new PropertyValueFactory<>("reservationID"));
-        roomNumber.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
-        reservation_date.setCellValueFactory(new PropertyValueFactory<reservation, String>("ReservationDate"));
-
-        try {
-            initReservationList();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }else{
+            confirmPasswordLabel.setText("Passwords do not match");
         }
-        reservationTable.setItems(reservations);
 
     }
-
-    public void handleViewAction(javafx.event.ActionEvent actionEvent) throws IOException {
-
-    }
-
-    public void initReservationList() throws IOException {
-        reservationList.clear();
-        reservations.clear();
-        String query = "SELECT * FROM reservations WHERE username = '" + LoginController.getUsername() + "'";
-        try {
-            pst = connection.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                int reservation_ID = Integer.parseInt(rs.getString("reservationID"));
-                String username= rs.getString("username");
-                int room_number = Integer.parseInt(rs.getString("roomNumber"));
-                String room_status = rs.getString("status");
-                String reservation_date = rs.getString("reservation_date");
-
-                reservationList.add(new reservation(reservation_ID, username, room_number, room_status, reservation_date));
-                reservations.add(new reservation(reservation_ID, username, room_number, room_status, reservation_date));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    private void Search(ObservableList<reservation> reservations, String d) {
-        reservations.clear();
-        for (int i = 0; i < reservationList.size(); i++) {
-            if (String.valueOf(reservationList.get(i).getReservationDate()).indexOf(d) == 0) {
-                reservations.add(reservationList.get(i));
-            }
-        }
-    }
-
-    public void handleSearchKey(KeyEvent event) {
-        if (event.getEventType() == KeyEvent.KEY_RELEASED) {
-            String s = search.getText();
-            Search(reservations, s);
-        }
-    }
-    Stage stage;
-    public void logoutButtonOnAction(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText("You are about to logout");
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            stage = (Stage) logoutButton.getScene().getWindow();
-            System.out.println("You successfully logged out");
-            stage.close();
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-                Stage registerStage = new Stage();
-                registerStage.initStyle(StageStyle.UNDECORATED);
-                registerStage.setScene(new Scene(root, 546, 407));
-                registerStage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
-            }
-        }
-    }
-    public void backButtonOnAction1(ActionEvent event){
-        stage=(Stage) backButton.getScene().getWindow();
+    public void closeButtonOnAction(ActionEvent event){
+        Stage stage=(Stage) closeButton.getScene().getWindow();
         stage.close();
-        try{
-            Parent root = FXMLLoader.load(getClass().getResource("homepageUser.fxml"));
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 1000, 692));
+            registerStage.setScene(new Scene(root, 546, 407));
             registerStage.show();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
         }
-    }
 
+    }
+    @FXML
+    private Button registerButton;
+    public void registerUser() {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        String firstname = firstnameTextField.getText();
+        String lastname = lastnameTextField.getText();
+        String username = usernameTextField.getText();
+        String password = setPasswordField.getText();
+        String type="user";
+        String insertFields = "INSERT INTO user_account(firstname, lastname, username, password,account_type) VALUES('";
+        String insertValues = firstname + "','" + lastname + "','" + username + "','" + password + "','" + type + "')";
+        String insertToRegister = insertFields + insertValues;
+        if(firstnameTextField.getText().isBlank()==true){
+            firsttNameLabel.setText("Please enter your first name.");
+        }
+        if(lastnameTextField.getText().isBlank()==true){
+            lastNameLabel.setText("Please enter your last name.");
+        }
+        if(usernameTextField.getText().isBlank()==true){
+            userNameLabel.setText("Please enter your username.");
+        }
+        if(setPasswordField.getText().isBlank()==true){
+            passwordLabel.setText("Please enter your password.");
+        }
+        if(confirmPasswordField.getText().isBlank()==true){
+            confirmPasswordLabel.setText("Please confirm your password.");
+        }
+
+        if (setPasswordField.getText().equals(confirmPasswordField.getText()) && firstnameTextField.getText().isBlank()==false && lastnameTextField.getText().isBlank()==false && usernameTextField.getText().isBlank()==false
+                && setPasswordField.getText().isBlank()==false && confirmPasswordField.getText().isBlank()==false) {
+            try {
+                Statement statement = connectDB.createStatement();
+                statement.executeUpdate(insertToRegister);
+                if (setPasswordField.getText().equals(confirmPasswordField.getText())) {
+                    registrationMessageLabel1.setText("User registered successfully");
+                    Stage stage=(Stage) registerButton.getScene().getWindow();
+                    stage.close();
+                    try {
+                        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+                        Stage registerStage = new Stage();
+                        registerStage.initStyle(StageStyle.UNDECORATED);
+                        registerStage.setScene(new Scene(root, 546, 407));
+                        registerStage.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        e.getCause();
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
+
+            }
+        }
+
+    }
 }
+
