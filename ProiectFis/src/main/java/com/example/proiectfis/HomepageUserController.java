@@ -66,6 +66,8 @@ public class HomepageUserController implements Initializable {
     private Button availableButton;
     @FXML
     private Button bookRoomButton;
+    @FXML
+    private Button userHistoryButton;
 
     public void createAvailableRooms(javafx.event.ActionEvent actionEvent){
         goToAvailableRooms();
@@ -83,7 +85,6 @@ public class HomepageUserController implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
-
 
     }
 
@@ -104,4 +105,26 @@ public class HomepageUserController implements Initializable {
             e.getCause();
         }
     }
+
+    public void createUserHistory(javafx.event.ActionEvent actionEvent){
+        goToUserHistory();
+        Stage stage=(Stage) availableButton.getScene().getWindow();
+        stage.close();
+    }
+    public void goToUserHistory(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("userHistory.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 720, 731));
+            registerStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
+    }
+
+
+
 }
